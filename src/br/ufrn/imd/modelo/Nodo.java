@@ -2,7 +2,7 @@ package br.ufrn.imd.modelo;
 
 public class Nodo<T> {
 	private T valor;
-	private int altura = 0;
+	private int altura = 1;
 	private Nodo<T> esquerdo = null;
 	private Nodo<T> direito = null;
 

@@ -23,6 +23,10 @@ public class ArvoreView {
 		System.out.println();
 		System.out.println("PRE-ORDEM-ITERATIVA");
 		abb.preOrdemIteRaiz();
+		System.out.println();
+		abb.atribuirAltura();
+		System.out.println("Altura da Árvore: " + abb.getAlturaArvore());
+		System.out.println("EM NÍVEL");
+		abb.emNivelRaiz();
 	}
-
 }
