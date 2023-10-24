@@ -34,47 +34,26 @@ public class ArvoreABB<T> {
 		}
 	}
 
-	public void preOrdemRaiz() {
-		preOrdem(raiz, VisitarFlag.IMPRIMIR);
+	public void preOrdemRaiz(VisitarFlag f) {
+		preOrdem(raiz, f);
 	}
 
 	public void preOrdem(Nodo<T> n, VisitarFlag f) {
 		if (n != null) {
 			visitar(n, f);
-			if (n.getEsquerdo() != null) {
-				preOrdem(n.getEsquerdo(), f);
+			Nodo<T> nEsq = n.getEsquerdo();
+			if (nEsq != null) {
+				preOrdem(nEsq, f);
 			}
-			if (n.getDireito() != null) {
-				preOrdem(n.getDireito(), f);
-			}
-		}
-	}
-
-	public void preOrdemIteRaiz() {
-		preOrdemIterativa(raiz, VisitarFlag.IMPRIMIR);
-	}
-
-	public void preOrdemIterativa(Nodo<T> n, VisitarFlag f) {
-		if (n != null) {
-			ArrayDeque<Nodo<T>> pilha = new ArrayDeque<>();
-			pilha.push(n);
-			while (!pilha.isEmpty()) {
-				Nodo<T> atual = pilha.pop();
-				visitar(atual, f);
-				Nodo<T> atualDir = atual.getDireito();
-				if (atualDir != null) {
-					pilha.push(atualDir);
-				}
-				Nodo<T> atualEsq = atual.getEsquerdo();
-				if (atualEsq != null) {
-					pilha.push(atualEsq);
-				}
+			Nodo<T> nDir = n.getDireito();
+			if (nDir != null) {
+				preOrdem(nDir, f);
 			}
 		}
 	}
 
-	public void ordemSimetricaRaiz() {
-		ordemSimetrica(raiz, VisitarFlag.IMPRIMIR);
+	public void ordemSimetricaRaiz(VisitarFlag f) {
+		ordemSimetrica(raiz, f);
 	}
 
 	public void ordemSimetrica(Nodo<T> n, VisitarFlag f) {
@@ -89,51 +68,26 @@ public class ArvoreABB<T> {
 		}
 	}
 
-	public void posOrdemRaiz() {
-		posOrdem(raiz, VisitarFlag.IMPRIMIR);
+	public void posOrdemRaiz(VisitarFlag f) {
+		posOrdem(raiz, f);
 	}
 
 	public void posOrdem(Nodo<T> n, VisitarFlag f) {
 		if (n != null) {
-			if (n.getEsquerdo() != null) {
-				posOrdem(n.getEsquerdo(), f);
+			Nodo<T> nEsq = n.getEsquerdo();
+			if (nEsq != null) {
+				posOrdem(nEsq, f);
 			}
-			if (n.getDireito() != null) {
-				posOrdem(n.getDireito(), f);
+			Nodo<T> nDir = n.getDireito();
+			if (nDir != null) {
+				posOrdem(nDir, f);
 			}
 			visitar(n, f);
 		}
 	}
 
-	public void posOrdemIteRaiz() {
-		posOrdemIterativa(raiz, VisitarFlag.IMPRIMIR);
-	}
-
-	public void posOrdemIterativa(Nodo<T> n, VisitarFlag f) {
-		if (n != null) {
-			ArrayDeque<Nodo<T>> pilha = new ArrayDeque<>();
-			ArrayDeque<Nodo<T>> pilha2 = new ArrayDeque<>();
-			pilha.push(n);
-			while (!pilha.isEmpty()) {
-				Nodo<T> atual = pilha.pop();
-				Nodo<T> atualEsq = atual.getEsquerdo();
-				pilha2.push(atual);
-				if (atualEsq != null) {
-					pilha.push(atualEsq);
-				}
-				Nodo<T> atualDir = atual.getDireito();
-				if (atualDir != null) {
-					pilha.push(atualDir);
-				}
-			}
-			while (!pilha2.isEmpty()) {
-				visitar(pilha2.pop(), f);
-			}
-		}
-	}
-
 	public void imprimirValor(Nodo<T> n) {
-		System.out.print(n.getValor() + " ");
+		System.out.print("Valor: " + n.getValor() + " Altura: " + n.getAltura() + " | ");
 	}
 
 	public int getAlturaArvore() {
@@ -176,4 +130,55 @@ public class ArvoreABB<T> {
 			}
 		}
 	}
+
+//	public void preOrdemIteRaiz() {
+//		preOrdemIterativa(raiz, VisitarFlag.IMPRIMIR);
+//	}
+//
+//	public void preOrdemIterativa(Nodo<T> n, VisitarFlag f) {
+//		if (n != null) {
+//			ArrayDeque<Nodo<T>> pilha = new ArrayDeque<>();
+//			pilha.push(n);
+//			while (!pilha.isEmpty()) {
+//				Nodo<T> atual = pilha.pop();
+//				visitar(atual, f);
+//				Nodo<T> atualDir = atual.getDireito();
+//				if (atualDir != null) {
+//					pilha.push(atualDir);
+//				}
+//				Nodo<T> atualEsq = atual.getEsquerdo();
+//				if (atualEsq != null) {
+//					pilha.push(atualEsq);
+//				}
+//			}
+//		}
+//	}
+//
+//
+//	public void posOrdemIteRaiz() {
+//		posOrdemIterativa(raiz, VisitarFlag.IMPRIMIR);
+//	}
+//
+//	public void posOrdemIterativa(Nodo<T> n, VisitarFlag f) {
+//		if (n != null) {
+//			ArrayDeque<Nodo<T>> pilha = new ArrayDeque<>();
+//			ArrayDeque<Nodo<T>> pilha2 = new ArrayDeque<>();
+//			pilha.push(n);
+//			while (!pilha.isEmpty()) {
+//				Nodo<T> atual = pilha.pop();
+//				pilha2.push(atual);
+//				Nodo<T> atualEsq = atual.getEsquerdo();
+//				if (atualEsq != null) {
+//					pilha.push(atualEsq);
+//				}
+//				Nodo<T> atualDir = atual.getDireito();
+//				if (atualDir != null) {
+//					pilha.push(atualDir);
+//				}
+//			}
+//			while (!pilha2.isEmpty()) {
+//				visitar(pilha2.pop(), f);
+//			}
+//		}
+//	}
 }
