@@ -5,8 +5,18 @@ public class Nodo<T> {
 	private int altura = 1;
 	private Nodo<T> esquerdo = null;
 	private Nodo<T> direito = null;
+	private int nodosEsquerda = 0;
+	private int nodosDireita = 0;
 
 	public Nodo(T valor) {
+		this.valor = valor;
+	}
+
+	public T getValor() {
+		return valor;
+	}
+
+	public void setValor(T valor) {
 		this.valor = valor;
 	}
 
@@ -16,14 +26,6 @@ public class Nodo<T> {
 
 	public void setAltura(int altura) {
 		this.altura = altura;
-	}
-
-	public T getValor() {
-		return valor;
-	}
-
-	public void setValor(T valor) {
-		this.valor = valor;
 	}
 
 	public Nodo<T> getEsquerdo() {
@@ -40,5 +42,21 @@ public class Nodo<T> {
 
 	public void setDireito(Nodo<T> direito) {
 		this.direito = direito;
+	}
+
+	public int getNodosEsquerda() {
+		return nodosEsquerda;
+	}
+
+	public void setNodosEsquerda(int nodosEsquerda) {
+		this.nodosEsquerda = nodosEsquerda;
+	}
+
+	public int getNodosDireita() {
+		return nodosDireita;
+	}
+
+	public void setNodosDireita(int nodosDireita) {
+		this.nodosDireita = nodosDireita;
 	}
 }
