@@ -1,3 +1,8 @@
+// SPDX-FileCopyrightText: 2023 Fabrício Moura Jácome
+// SPDX-FileCopyrightText: 2023 Ramon Oliveira de Almeida
+//
+// SPDX-License-Identifier: MIT
+
 package br.ufrn.imd.visao;
 
 import br.ufrn.imd.modelo.ArvoreABB;
