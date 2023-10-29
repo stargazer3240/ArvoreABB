@@ -149,6 +149,55 @@ public class ArvoreABB {
 		return n;
 	}
 
+	// Deletar um no da arvore
+	public void deletarChave(int chave) {
+		raiz = deletarRecursivo(raiz, chave);
+	}
+	
+	// Funcao recursiva utilizada para deletar um no
+	public Nodo deletarRecursivo(Nodo raiz, int valor) {
+		// Se a arvore estiver vazia
+		if(raiz == null) {
+			return raiz;
+		}
+		// Percorrer a arvore
+		// Percorrer pela subarvore esquerda
+		if(valor < raiz.getValor()) {
+			raiz.setEsq(deletarRecursivo(raiz.getEsq(), valor));
+		}
+		// Percorrer pela subarvore direita
+		else if(valor > raiz.getValor()) {
+			raiz.setDir(deletarRecursivo(raiz.getDir(), valor));
+		}
+		else {
+			// Se o no possui apenas um filho
+			if(raiz.getEsq() == null) {
+				return raiz.getDir();
+			}
+			else if(raiz.getDir() == null) {
+				return raiz.getEsq();
+			}
+			// Se o no possui dois filhos
+			// Pegar o sucessor de menor valor da subarvore da direita
+			raiz.setValor(menorValor(raiz.getDir()));
+			
+			// Deletar o sucessor de menor valor
+			raiz.setDir(deletarRecursivo(raiz.getDir(), raiz.getValor()));
+		}
+		return raiz;
+	}
+	
+	public int menorValor(Nodo raiz) {
+		// Inicialmente, a menor chave eh a propria raiz
+		int menorChave = raiz.getValor();
+		// Vamos encontrar e retornar a menorChave
+		while(raiz.getEsq() != null) {
+			menorChave = raiz.getEsq().getValor();
+			raiz = raiz.getEsq();
+		}
+		return menorChave;
+	}
+
 	public boolean buscaArvoreBinaria(int chave) {
 		
 		Nodo temp = raiz;
