@@ -7,18 +7,18 @@ package br.ufrn.imd.modelo;
 
 import java.util.ArrayDeque;
 
-public class ArvoreABB<T> {
-	private Nodo<T> raiz;
+public class ArvoreABB {
+	private Nodo raiz;
 
-	public ArvoreABB(Nodo<T> n) {
+	public ArvoreABB(Nodo n) {
 		this.raiz = n;
 	}
 
-	public Nodo<T> getRaiz() {
+	public Nodo getRaiz() {
 		return raiz;
 	}
 
-	public void setRaiz(Nodo<T> raiz) {
+	public void setRaiz(Nodo raiz) {
 		this.raiz = raiz;
 	}
 
@@ -26,7 +26,7 @@ public class ArvoreABB<T> {
 		IMPRIMIR, ALTURA, VALOR
 	}
 
-	private void visitar(Nodo<T> n, VisitarFlag f) {
+	private void visitar(Nodo n, VisitarFlag f) {
 		switch (f) {
 		case IMPRIMIR:
 			imprimirValor(n);
@@ -43,14 +43,14 @@ public class ArvoreABB<T> {
 		preOrdem(raiz, f);
 	}
 
-	public void preOrdem(Nodo<T> n, VisitarFlag f) {
+	public void preOrdem(Nodo n, VisitarFlag f) {
 		if (n != null) {
 			visitar(n, f);
-			Nodo<T> nEsq = n.getEsq();
+			Nodo nEsq = n.getEsq();
 			if (nEsq != null) {
 				preOrdem(nEsq, f);
 			}
-			Nodo<T> nDir = n.getDir();
+			Nodo nDir = n.getDir();
 			if (nDir != null) {
 				preOrdem(nDir, f);
 			}
@@ -61,7 +61,7 @@ public class ArvoreABB<T> {
 		ordemSimetrica(raiz, f);
 	}
 
-	public void ordemSimetrica(Nodo<T> n, VisitarFlag f) {
+	public void ordemSimetrica(Nodo n, VisitarFlag f) {
 		if (n != null) {
 			if (n.getEsq() != null) {
 				ordemSimetrica(n.getEsq(), f);
@@ -77,13 +77,13 @@ public class ArvoreABB<T> {
 		posOrdem(raiz, f);
 	}
 
-	public void posOrdem(Nodo<T> n, VisitarFlag f) {
+	public void posOrdem(Nodo n, VisitarFlag f) {
 		if (n != null) {
-			Nodo<T> nEsq = n.getEsq();
+			Nodo nEsq = n.getEsq();
 			if (nEsq != null) {
 				posOrdem(nEsq, f);
 			}
-			Nodo<T> nDir = n.getDir();
+			Nodo nDir = n.getDir();
 			if (nDir != null) {
 				posOrdem(nDir, f);
 			}
@@ -91,7 +91,7 @@ public class ArvoreABB<T> {
 		}
 	}
 
-	public void imprimirValor(Nodo<T> n) {
+	public void imprimirValor(Nodo n) {
 		System.out.print(n.getValor() + " ");
 	}
 
@@ -103,11 +103,11 @@ public class ArvoreABB<T> {
 		posOrdem(raiz, VisitarFlag.ALTURA);
 	}
 
-	private void calcularAltura(Nodo<T> n) {
+	private void calcularAltura(Nodo n) {
 		if (n != null) {
-			Nodo<T> nodoEsq = n.getEsq();
+			Nodo nodoEsq = n.getEsq();
 			int alturaEsq = nodoEsq == null ? 0 : nodoEsq.getAltura();
-			Nodo<T> nodoDir = n.getDir();
+			Nodo nodoDir = n.getDir();
 			int alturaDir = nodoDir == null ? 0 : nodoDir.getAltura();
 			n.setAltura(Math.max(alturaEsq, alturaDir) + 1);
 		}
@@ -117,18 +117,18 @@ public class ArvoreABB<T> {
 		emNivel(raiz, f);
 	}
 
-	public void emNivel(Nodo<T> n, VisitarFlag f) {
+	public void emNivel(Nodo n, VisitarFlag f) {
 		if (n != null) {
-			ArrayDeque<Nodo<T>> fila = new ArrayDeque<>();
+			ArrayDeque<Nodo> fila = new ArrayDeque<>();
 			fila.add(n);
 			while (!fila.isEmpty()) {
-				Nodo<T> atual = fila.poll();
+				Nodo atual = fila.poll();
 				visitar(atual, f);
-				Nodo<T> atualEsq = atual.getEsq();
+				Nodo atualEsq = atual.getEsq();
 				if (atualEsq != null) {
 					fila.add(atualEsq);
 				}
-				Nodo<T> atualDir = atual.getDir();
+				Nodo atualDir = atual.getDir();
 				if (atualDir != null) {
 					fila.add(atualDir);
 				}
