@@ -22,7 +22,7 @@ public class ArvoreABB<T> {
 		this.raiz = raiz;
 	}
 
-	private enum VisitarFlag {
+	public enum VisitarFlag {
 		IMPRIMIR, ALTURA, VALOR
 	}
 
@@ -39,7 +39,7 @@ public class ArvoreABB<T> {
 		}
 	}
 
-	public void preOrdemRaiz(VisitarFlag f) {
+	public void preOrdem(VisitarFlag f) {
 		preOrdem(raiz, f);
 	}
 
@@ -57,7 +57,7 @@ public class ArvoreABB<T> {
 		}
 	}
 
-	public void ordemSimetricaRaiz(VisitarFlag f) {
+	public void ordemSimetrica(VisitarFlag f) {
 		ordemSimetrica(raiz, f);
 	}
 
@@ -73,7 +73,7 @@ public class ArvoreABB<T> {
 		}
 	}
 
-	public void posOrdemRaiz(VisitarFlag f) {
+	public void posOrdem(VisitarFlag f) {
 		posOrdem(raiz, f);
 	}
 
@@ -92,7 +92,7 @@ public class ArvoreABB<T> {
 	}
 
 	public void imprimirValor(Nodo<T> n) {
-		System.out.print("Valor: " + n.getValor() + " Altura: " + n.getAltura() + " | ");
+		System.out.print(n.getValor() + " ");
 	}
 
 	public int getAlturaArvore() {
@@ -113,8 +113,8 @@ public class ArvoreABB<T> {
 		}
 	}
 
-	public void emNivelRaiz() {
-		emNivel(raiz, VisitarFlag.IMPRIMIR);
+	public void emNivel(VisitarFlag f) {
+		emNivel(raiz, f);
 	}
 
 	public void emNivel(Nodo<T> n, VisitarFlag f) {

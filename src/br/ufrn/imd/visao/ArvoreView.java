@@ -6,6 +6,7 @@
 package br.ufrn.imd.visao;
 
 import br.ufrn.imd.modelo.ArvoreABB;
+import br.ufrn.imd.modelo.ArvoreABB.VisitarFlag;
 import br.ufrn.imd.modelo.Nodo;
 
 public class ArvoreView {
@@ -18,20 +19,12 @@ public class ArvoreView {
 		abb.getRaiz().getDireito().setEsquerdo(new Nodo<>(14));
 		abb.getRaiz().getDireito().setDireito(new Nodo<>(18));
 		System.out.println("PRE-ORDEM");
-		abb.preOrdemRaiz();
+		abb.preOrdem(VisitarFlag.IMPRIMIR);
 		System.out.println();
 		System.out.println("SIMETRICA");
-		abb.ordemSimetricaRaiz();
+		abb.ordemSimetrica(VisitarFlag.IMPRIMIR);
 		System.out.println();
 		System.out.println("POS-ORDEM");
-		abb.posOrdemRaiz();
-		System.out.println();
-		System.out.println("PRE-ORDEM-ITERATIVA");
-		abb.preOrdemIteRaiz();
-		System.out.println();
-		abb.atribuirAltura();
-		System.out.println("Altura da Árvore: " + abb.getAlturaArvore());
-		System.out.println("EM NÍVEL");
-		abb.emNivelRaiz();
+		abb.posOrdem(VisitarFlag.IMPRIMIR);
 	}
 }
