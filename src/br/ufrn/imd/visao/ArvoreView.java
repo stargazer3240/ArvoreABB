@@ -37,7 +37,7 @@ public class ArvoreView {
 
 		abb.ordemSimetrica(VisitarFlag.IMPRIMIR);
 
-		System.out.println("\nEnesimo: " + abb.enesimoElemento(6));
+		System.out.println("\nEnesimo: " + abb.enesimoElemento(3));
 
 		/*
 		// delete leaf node
