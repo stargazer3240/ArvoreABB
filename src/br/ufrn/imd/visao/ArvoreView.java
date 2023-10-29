@@ -5,9 +5,12 @@
 
 package br.ufrn.imd.visao;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 import br.ufrn.imd.modelo.ArvoreABB;
 import br.ufrn.imd.modelo.ArvoreABB.VisitarFlag;
-import br.ufrn.imd.modelo.Nodo;
 
 public class ArvoreView {
 
@@ -20,14 +23,26 @@ public class ArvoreView {
 		abb.inserir(90);
 		abb.inserir(50);
 
-		/*System.out.println("PRE-ORDEM");
-		abb.preOrdem(VisitarFlag.IMPRIMIR);*/
+		try {
+			File arvoreInput = new File("input" + File.separator + "arvore.txt");
+			Scanner scanner = new Scanner(arvoreInput);
+			while (scanner.hasNext()) {
+				String data = scanner.next();
+				abb.inserir(Integer.parseInt(data));
+			}
+			scanner.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("Arquivo não encontrado!");
+		}
+
+		System.out.println("PRE-ORDEM");
+		abb.preOrdem(VisitarFlag.IMPRIMIR);
 		System.out.println();
 		System.out.println("SIMETRICA");
 		abb.ordemSimetrica(VisitarFlag.IMPRIMIR);
 		System.out.println();
-		/*System.out.println("POS-ORDEM");
-		abb.posOrdem(VisitarFlag.IMPRIMIR);*/
+		System.out.println("POS-ORDEM");
+		abb.posOrdem(VisitarFlag.IMPRIMIR);
 
 		//delete leaf node  
         System.out.println("\nThe BST after Delete 12(leaf node):"); 
@@ -43,10 +58,12 @@ public class ArvoreView {
         abb.deletarChave(45); 
         abb.ordemSimetrica(VisitarFlag.IMPRIMIR);
 
-
 		boolean ret_val = abb.buscaArvoreBinaria(50);
         System.out.println("\nKey 50 found in BST:" + ret_val );
         ret_val = abb.buscaArvoreBinaria(12);
         System.out.println("\nKey 12 found in BST:" + ret_val );
+		System.out.println("POS-ORDEM");
+		abb.posOrdem(VisitarFlag.IMPRIMIR);
+		System.out.println();
 	}
 }
