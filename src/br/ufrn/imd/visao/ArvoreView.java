@@ -23,19 +23,23 @@ public class ArvoreView {
 		abb.inserir(90);
 		abb.inserir(50);
 
-//		try {
-//			File arvoreInput = new File("input" + File.separator + "arvore.txt");
-//			Scanner scanner = new Scanner(arvoreInput);
-//			while (scanner.hasNext()) {
-//				String data = scanner.next();
-//				abb.inserir(Integer.parseInt(data));
-//			}
-//			scanner.close();
-//		} catch (FileNotFoundException e) {
-//			System.out.println("Arquivo não encontrado!");
-//		}
+		/*try {
+			File arvoreInput = new File("input" + File.separator + "arvore.txt");
+			Scanner scanner = new Scanner(arvoreInput);
+			while (scanner.hasNext()) {
+				String data = scanner.next();
+				abb.inserir(Integer.parseInt(data));
+			}
+			scanner.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("Arquivo não encontrado!");
+		}*/
 
 		abb.ordemSimetrica(VisitarFlag.IMPRIMIR);
+
+		System.out.println("\nEnesimo: " + abb.enesimoElemento(6));
+
+		/*
 		// delete leaf node
 		System.out.println();
 		System.out.println("Deletar 12:");
@@ -51,10 +55,14 @@ public class ArvoreView {
 		System.out.println("Deletar 45:");
 		abb.deletarChave(45);
 		abb.ordemSimetrica(VisitarFlag.IMPRIMIR);
+		*/
 
+		/*
 		System.out.println();
 		System.out.println();
 		System.out.println("Buscar 50: " + abb.buscar(50));
 		System.out.println("Buscar 12: " + abb.buscar(12));
+		*/
+		
 	}
 }

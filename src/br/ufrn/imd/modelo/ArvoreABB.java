@@ -6,9 +6,18 @@
 package br.ufrn.imd.modelo;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Stack;
 
 public class ArvoreABB {
 	private Nodo raiz;
+
+	private int tamanho(Nodo nodo) {
+        if (nodo == null) {
+            return 0;
+        }
+        return nodo.getTamanho();
+    }
 
 	public Nodo getRaiz() {
 		return raiz;
@@ -88,7 +97,7 @@ public class ArvoreABB {
 	}
 
 	public void imprimirValor(Nodo n) {
-		System.out.print(n.getValor() + " ");
+		System.out.print(n.getValor() + "  |" + n.getAltura() + "| ");
 	}
 
 	public int getAlturaArvore() {
@@ -134,6 +143,7 @@ public class ArvoreABB {
 
 	public void inserir(int valor) {
 		this.raiz = inserir(raiz, valor);
+		this.atribuirAltura();
 	}
 
 	private Nodo inserir(Nodo n, int valor) {
@@ -145,7 +155,12 @@ public class ArvoreABB {
 			n.setEsq(inserir(n.getEsq(), valor));
 		}
 		if (valor > n.getValor())
+		{
 			n.setDir(inserir(n.getDir(), valor));
+		}
+
+		int tam = 1 + tamanho(n.getEsq()) + tamanho(n.getDir());
+		n.setTamanho(tam); 
 		return n;
 	}
 
@@ -210,6 +225,21 @@ public class ArvoreABB {
 		}
 		return buscar(n.getDir(), valor);
 	}
+
+	public int enesimoElemento(int n) {
+        return enesimoElemento(raiz, n);
+    }
+
+    private int enesimoElemento(Nodo nodo, int n) {
+        int leftSize = tamanho(nodo.getEsq());
+        if (n <= leftSize) {
+            return enesimoElemento(nodo.getEsq(), n);
+        } else if (n == leftSize + 1) {
+            return nodo.getValor();
+        } else {
+            return enesimoElemento(nodo.getDir(), n - leftSize - 1);
+        }
+    }
 
 //	public void preOrdemIteRaiz() {
 //		preOrdemIterativa(raiz, VisitarFlag.IMPRIMIR);
