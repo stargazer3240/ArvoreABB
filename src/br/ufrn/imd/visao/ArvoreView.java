@@ -12,12 +12,13 @@ import br.ufrn.imd.modelo.Nodo;
 public class ArvoreView {
 
 	public static void main(String[] args) {
-		ArvoreABB abb = new ArvoreABB(new Nodo(10));
-		abb.getRaiz().setEsq(new Nodo(5));
-		abb.getRaiz().setDir(new Nodo(15));
-		abb.getRaiz().getEsq().setDir(new Nodo(8));
-		abb.getRaiz().getDir().setEsq(new Nodo(14));
-		abb.getRaiz().getDir().setDir(new Nodo(18));
+		ArvoreABB abb = new ArvoreABB();
+		abb.inserir(45);
+		abb.inserir(10);
+		abb.inserir(7);
+		abb.inserir(12);
+		abb.inserir(90);
+		abb.inserir(50);
 		System.out.println("PRE-ORDEM");
 		abb.preOrdem(VisitarFlag.IMPRIMIR);
 		System.out.println();

@@ -10,10 +10,6 @@ import java.util.ArrayDeque;
 public class ArvoreABB {
 	private Nodo raiz;
 
-	public ArvoreABB(Nodo n) {
-		this.raiz = n;
-	}
-
 	public Nodo getRaiz() {
 		return raiz;
 	}
@@ -141,14 +137,16 @@ public class ArvoreABB {
 	}
 
 	private Nodo inserir(Nodo n, int valor) {
-		if (raiz == null) {
-			raiz = new Nodo(valor);
-			return raiz;
-		} else if (valor < raiz.getValor()) {
-			raiz.setEsq(inserir(raiz.getEsq(), valor));
-		} else if (valor > raiz.getValor())
-			raiz.setDir(inserir(raiz.getDir(), valor));
-		return raiz;
+		if (n == null) {
+			n = new Nodo(valor);
+			return n;
+		}
+		if (valor < raiz.getValor()) {
+			n.setEsq(inserir(n.getEsq(), valor));
+		}
+		if (valor > n.getValor())
+			n.setDir(inserir(n.getDir(), valor));
+		return n;
 	}
 
 //	public void preOrdemIteRaiz() {
