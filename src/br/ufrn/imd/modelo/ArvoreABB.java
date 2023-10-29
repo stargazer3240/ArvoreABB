@@ -141,12 +141,37 @@ public class ArvoreABB {
 			n = new Nodo(valor);
 			return n;
 		}
-		if (valor < raiz.getValor()) {
+		if (valor < n.getValor()) {
 			n.setEsq(inserir(n.getEsq(), valor));
 		}
 		if (valor > n.getValor())
 			n.setDir(inserir(n.getDir(), valor));
 		return n;
+	}
+
+	public boolean buscaArvoreBinaria(int chave) {
+		
+		Nodo temp = raiz;
+
+		temp = buscar(temp, chave);
+		
+		if(temp != null) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public Nodo buscar(Nodo raiz, int valor) {
+
+		if(raiz == null || raiz.getValor() == valor) {
+			return raiz;
+		}
+		if(raiz.getValor() > valor) {
+			return buscar(raiz.getEsq(), valor);
+		}
+		return buscar(raiz.getDir(), valor);
 	}
 
 //	public void preOrdemIteRaiz() {

@@ -27,5 +27,10 @@ public class ArvoreView {
 		System.out.println();
 		System.out.println("POS-ORDEM");
 		abb.posOrdem(VisitarFlag.IMPRIMIR);
+
+		boolean ret_val = abb.buscaArvoreBinaria(50);
+        System.out.println("\nKey 50 found in BST:" + ret_val );
+        ret_val = abb.buscaArvoreBinaria(12);
+        System.out.println("\nKey 12 found in BST:" + ret_val );
 	}
 }
