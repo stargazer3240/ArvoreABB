@@ -136,6 +136,21 @@ public class ArvoreABB {
 		}
 	}
 
+	public void inserir(int valor) {
+		this.raiz = inserir(raiz, valor);
+	}
+
+	private Nodo inserir(Nodo n, int valor) {
+		if (raiz == null) {
+			raiz = new Nodo(valor);
+			return raiz;
+		} else if (valor < raiz.getValor()) {
+			raiz.setEsq(inserir(raiz.getEsq(), valor));
+		} else if (valor > raiz.getValor())
+			raiz.setDir(inserir(raiz.getDir(), valor));
+		return raiz;
+	}
+
 //	public void preOrdemIteRaiz() {
 //		preOrdemIterativa(raiz, VisitarFlag.IMPRIMIR);
 //	}
