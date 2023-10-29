@@ -69,5 +69,4 @@ public class Nodo {
 	public void setNodosDir(int nodosDir) {
 		this.nodosDir = nodosDir;
 	}
-
 }

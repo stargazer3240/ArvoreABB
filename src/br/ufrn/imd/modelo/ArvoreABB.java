@@ -153,74 +153,62 @@ public class ArvoreABB {
 	public void deletarChave(int chave) {
 		raiz = deletarRecursivo(raiz, chave);
 	}
-	
+
 	// Funcao recursiva utilizada para deletar um no
-	public Nodo deletarRecursivo(Nodo raiz, int valor) {
+	public Nodo deletarRecursivo(Nodo n, int valor) {
 		// Se a arvore estiver vazia
-		if(raiz == null) {
-			return raiz;
+		if (n == null) {
+			return n;
 		}
 		// Percorrer a arvore
 		// Percorrer pela subarvore esquerda
-		if(valor < raiz.getValor()) {
-			raiz.setEsq(deletarRecursivo(raiz.getEsq(), valor));
+		if (valor < n.getValor()) {
+			n.setEsq(deletarRecursivo(n.getEsq(), valor));
 		}
 		// Percorrer pela subarvore direita
-		else if(valor > raiz.getValor()) {
-			raiz.setDir(deletarRecursivo(raiz.getDir(), valor));
-		}
-		else {
+		else if (valor > n.getValor()) {
+			n.setDir(deletarRecursivo(n.getDir(), valor));
+		} else {
 			// Se o no possui apenas um filho
-			if(raiz.getEsq() == null) {
-				return raiz.getDir();
-			}
-			else if(raiz.getDir() == null) {
-				return raiz.getEsq();
+			if (n.getEsq() == null) {
+				return n.getDir();
+			} else if (n.getDir() == null) {
+				return n.getEsq();
 			}
 			// Se o no possui dois filhos
 			// Pegar o sucessor de menor valor da subarvore da direita
-			raiz.setValor(menorValor(raiz.getDir()));
-			
+			n.setValor(menorValor(n.getDir()));
+
 			// Deletar o sucessor de menor valor
-			raiz.setDir(deletarRecursivo(raiz.getDir(), raiz.getValor()));
+			n.setDir(deletarRecursivo(n.getDir(), n.getValor()));
 		}
-		return raiz;
+		return n;
 	}
-	
-	public int menorValor(Nodo raiz) {
+
+	public int menorValor(Nodo n) {
 		// Inicialmente, a menor chave eh a propria raiz
-		int menorChave = raiz.getValor();
+		int menorChave = n.getValor();
 		// Vamos encontrar e retornar a menorChave
-		while(raiz.getEsq() != null) {
-			menorChave = raiz.getEsq().getValor();
-			raiz = raiz.getEsq();
+		while (n.getEsq() != null) {
+			menorChave = n.getEsq().getValor();
+			n = n.getEsq();
 		}
 		return menorChave;
 	}
 
-	public boolean buscaArvoreBinaria(int chave) {
-		
-		Nodo temp = raiz;
-
-		temp = buscar(temp, chave);
-		
-		if(temp != null) {
-			return true;
-		}
-		else {
-			return false;
-		}
+	public boolean buscar(int chave) {
+		return buscar(raiz, chave) != null;
 	}
-	
-	public Nodo buscar(Nodo raiz, int valor) {
 
-		if(raiz == null || raiz.getValor() == valor) {
-			return raiz;
+	public Nodo buscar(Nodo n, int valor) {
+
+		if (n == null || n.getValor() == valor) {
+			return n;
 		}
-		if(raiz.getValor() > valor) {
-			return buscar(raiz.getEsq(), valor);
+		if (n.getValor() > valor) {
+			return buscar(n.getEsq(), valor);
 		}
-		return buscar(raiz.getDir(), valor);
+		return buscar(n.getDir(), valor);
 	}
 
 //	public void preOrdemIteRaiz() {
