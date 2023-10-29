@@ -46,11 +46,11 @@ public class ArvoreABB<T> {
 	public void preOrdem(Nodo<T> n, VisitarFlag f) {
 		if (n != null) {
 			visitar(n, f);
-			Nodo<T> nEsq = n.getEsquerdo();
+			Nodo<T> nEsq = n.getEsq();
 			if (nEsq != null) {
 				preOrdem(nEsq, f);
 			}
-			Nodo<T> nDir = n.getDireito();
+			Nodo<T> nDir = n.getDir();
 			if (nDir != null) {
 				preOrdem(nDir, f);
 			}
@@ -63,12 +63,12 @@ public class ArvoreABB<T> {
 
 	public void ordemSimetrica(Nodo<T> n, VisitarFlag f) {
 		if (n != null) {
-			if (n.getEsquerdo() != null) {
-				ordemSimetrica(n.getEsquerdo(), f);
+			if (n.getEsq() != null) {
+				ordemSimetrica(n.getEsq(), f);
 			}
 			visitar(n, f);
-			if (n.getDireito() != null) {
-				ordemSimetrica(n.getDireito(), f);
+			if (n.getDir() != null) {
+				ordemSimetrica(n.getDir(), f);
 			}
 		}
 	}
@@ -79,11 +79,11 @@ public class ArvoreABB<T> {
 
 	public void posOrdem(Nodo<T> n, VisitarFlag f) {
 		if (n != null) {
-			Nodo<T> nEsq = n.getEsquerdo();
+			Nodo<T> nEsq = n.getEsq();
 			if (nEsq != null) {
 				posOrdem(nEsq, f);
 			}
-			Nodo<T> nDir = n.getDireito();
+			Nodo<T> nDir = n.getDir();
 			if (nDir != null) {
 				posOrdem(nDir, f);
 			}
@@ -105,9 +105,9 @@ public class ArvoreABB<T> {
 
 	private void calcularAltura(Nodo<T> n) {
 		if (n != null) {
-			Nodo<T> nodoEsq = n.getEsquerdo();
+			Nodo<T> nodoEsq = n.getEsq();
 			int alturaEsq = nodoEsq == null ? 0 : nodoEsq.getAltura();
-			Nodo<T> nodoDir = n.getDireito();
+			Nodo<T> nodoDir = n.getDir();
 			int alturaDir = nodoDir == null ? 0 : nodoDir.getAltura();
 			n.setAltura(Math.max(alturaEsq, alturaDir) + 1);
 		}
@@ -124,11 +124,11 @@ public class ArvoreABB<T> {
 			while (!fila.isEmpty()) {
 				Nodo<T> atual = fila.poll();
 				visitar(atual, f);
-				Nodo<T> atualEsq = atual.getEsquerdo();
+				Nodo<T> atualEsq = atual.getEsq();
 				if (atualEsq != null) {
 					fila.add(atualEsq);
 				}
-				Nodo<T> atualDir = atual.getDireito();
+				Nodo<T> atualDir = atual.getDir();
 				if (atualDir != null) {
 					fila.add(atualDir);
 				}

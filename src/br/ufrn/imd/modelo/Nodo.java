@@ -7,14 +7,19 @@ package br.ufrn.imd.modelo;
 
 public class Nodo<T> {
 	private T valor;
-	private int altura = 1;
-	private Nodo<T> esquerdo = null;
-	private Nodo<T> direito = null;
-	private int nodosEsquerda = 0;
-	private int nodosDireita = 0;
+	private int altura;
+	private Nodo<T> esq;
+	private Nodo<T> dir;
+	private int nodosEsq;
+	private int nodosDir;
 
 	public Nodo(T valor) {
 		this.valor = valor;
+		this.altura = 1;
+		Nodo<T> esq = null;
+		Nodo<T> dir = null;
+		nodosEsq = 0;
+		nodosDir = 0;
 	}
 
 	public T getValor() {
@@ -33,35 +38,35 @@ public class Nodo<T> {
 		this.altura = altura;
 	}
 
-	public Nodo<T> getEsquerdo() {
-		return esquerdo;
+	public Nodo<T> getEsq() {
+		return esq;
 	}
 
-	public void setEsquerdo(Nodo<T> esquerdo) {
-		this.esquerdo = esquerdo;
+	public void setEsq(Nodo<T> esquerdo) {
+		this.esq = esquerdo;
 	}
 
-	public Nodo<T> getDireito() {
-		return direito;
+	public Nodo<T> getDir() {
+		return dir;
 	}
 
-	public void setDireito(Nodo<T> direito) {
-		this.direito = direito;
+	public void setDir(Nodo<T> direito) {
+		this.dir = direito;
 	}
 
-	public int getNodosEsquerda() {
-		return nodosEsquerda;
+	public int getNodosEsq() {
+		return nodosEsq;
 	}
 
-	public void setNodosEsquerda(int nodosEsquerda) {
-		this.nodosEsquerda = nodosEsquerda;
+	public void setNodosEsq(int nodosEsquerda) {
+		this.nodosEsq = nodosEsquerda;
 	}
 
-	public int getNodosDireita() {
-		return nodosDireita;
+	public int getNodosDir() {
+		return nodosDir;
 	}
 
-	public void setNodosDireita(int nodosDireita) {
-		this.nodosDireita = nodosDireita;
+	public void setNodosDir(int nodosDireita) {
+		this.nodosDir = nodosDireita;
 	}
 }
