@@ -165,24 +165,23 @@ public class ArvoreABB {
 	}
 
 	// Deletar um no da arvore
-	public void deletarChave(int chave) {
-		raiz = deletarRecursivo(raiz, chave);
+	public void deletar(int chave) {
+		raiz = deletar(raiz, chave);
 	}
 
 	// Funcao recursiva utilizada para deletar um no
-	public Nodo deletarRecursivo(Nodo n, int valor) {
-		// Se a arvore estiver vazia
+	public Nodo deletar(Nodo n, int valor) {
 		if (n == null) {
 			return n;
 		}
 		// Percorrer a arvore
 		// Percorrer pela subarvore esquerda
 		if (valor < n.getValor()) {
-			n.setEsq(deletarRecursivo(n.getEsq(), valor));
+			n.setEsq(deletar(n.getEsq(), valor));
 		}
 		// Percorrer pela subarvore direita
 		else if (valor > n.getValor()) {
-			n.setDir(deletarRecursivo(n.getDir(), valor));
+			n.setDir(deletar(n.getDir(), valor));
 		} else {
 			// Se o no possui apenas um filho
 			if (n.getEsq() == null) {
@@ -195,7 +194,7 @@ public class ArvoreABB {
 			n.setValor(menorValor(n.getDir()));
 
 			// Deletar o sucessor de menor valor
-			n.setDir(deletarRecursivo(n.getDir(), n.getValor()));
+			n.setDir(deletar(n.getDir(), n.getValor()));
 		}
 		return n;
 	}

@@ -43,17 +43,17 @@ public class ArvoreView {
 		// delete leaf node
 		System.out.println();
 		System.out.println("Deletar 12:");
-		abb.deletarChave(12);
+		abb.deletar(12);
 		abb.ordemSimetrica(VisitarFlag.IMPRIMIR);
 		System.out.println();
 		// delete the node with one child
 		System.out.println("Deletar 90:");
-		abb.deletarChave(90);
+		abb.deletar(90);
 		abb.ordemSimetrica(VisitarFlag.IMPRIMIR);
 		System.out.println();
 		// delete node with two children
 		System.out.println("Deletar 45:");
-		abb.deletarChave(45);
+		abb.deletar(45);
 		abb.ordemSimetrica(VisitarFlag.IMPRIMIR);
 		*/
 
