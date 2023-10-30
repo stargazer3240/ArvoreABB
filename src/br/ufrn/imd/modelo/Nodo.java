@@ -12,7 +12,6 @@ public class Nodo {
 	private Nodo dir;
 	private int nodosEsq;
 	private int nodosDir;
-	private int tamanho;
 
 	public Nodo(int valor) {
 		this.valor = valor;
@@ -21,15 +20,6 @@ public class Nodo {
 		Nodo dir = null;
 		nodosEsq = 0;
 		nodosDir = 0;
-		this.tamanho = 1;
-	}
-
-	public int getTamanho() {
-		return tamanho;
-	}
-
-	public void setTamanho(int tamanho) {
-		this.tamanho = tamanho;
 	}
 
 	public int getValor() {
