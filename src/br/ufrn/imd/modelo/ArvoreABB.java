@@ -13,11 +13,11 @@ public class ArvoreABB {
 	private Nodo raiz;
 
 	private int tamanho(Nodo nodo) {
-        if (nodo == null) {
-            return 0;
-        }
-        return nodo.getTamanho();
-    }
+		if (nodo == null) {
+			return 0;
+		}
+		return nodo.getTamanho();
+	}
 
 	public Nodo getRaiz() {
 		return raiz;
@@ -97,7 +97,7 @@ public class ArvoreABB {
 	}
 
 	public void imprimirValor(Nodo n) {
-		System.out.print(n.getValor() + "  |" + n.getAltura() + "| ");
+		System.out.println(n.getValor() + "\t| QtdEsq: " + n.getNodosEsq() + " QtdDir: " + n.getNodosDir());
 	}
 
 	public int getAlturaArvore() {
@@ -144,6 +144,7 @@ public class ArvoreABB {
 	public void inserir(int valor) {
 		this.raiz = inserir(raiz, valor);
 		this.atribuirAltura();
+		this.atribuirIndex();
 	}
 
 	private Nodo inserir(Nodo n, int valor) {
@@ -154,13 +155,12 @@ public class ArvoreABB {
 		if (valor < n.getValor()) {
 			n.setEsq(inserir(n.getEsq(), valor));
 		}
-		if (valor > n.getValor())
-		{
+		if (valor > n.getValor()) {
 			n.setDir(inserir(n.getDir(), valor));
 		}
 
 		int tam = 1 + tamanho(n.getEsq()) + tamanho(n.getDir());
-		n.setTamanho(tam); 
+		n.setTamanho(tam);
 		return n;
 	}
 
@@ -226,19 +226,43 @@ public class ArvoreABB {
 	}
 
 	public int enesimoElemento(int n) {
-        return enesimoElemento(raiz, n);
-    }
+		return enesimoElemento(raiz, n);
+	}
 
-    private int enesimoElemento(Nodo nodo, int n) {
-        int leftSize = tamanho(nodo.getEsq());
-        if (n <= leftSize) {
-            return enesimoElemento(nodo.getEsq(), n);
-        } else if (n == leftSize + 1) {
-            return nodo.getValor();
-        } else {
-            return enesimoElemento(nodo.getDir(), n - leftSize - 1);
-        }
-    }
+	private int enesimoElemento(Nodo nodo, int n) {
+		int leftSize = tamanho(nodo.getEsq());
+		if (n <= leftSize) {
+			return enesimoElemento(nodo.getEsq(), n);
+		} else if (n == leftSize + 1) {
+			return nodo.getValor();
+		} else {
+			return enesimoElemento(nodo.getDir(), n - leftSize - 1);
+		}
+	}
+
+	public void atribuirIndex() {
+		calcularIndex(raiz, 0);
+	}
+
+	private int calcularIndex(Nodo n, int i) {
+		if (n != null) {
+			if (n.getEsq() != null) {
+				i = calcularIndex(n.getEsq(), i);
+				n.setNodosEsq(i);
+			}
+			i++;
+			if (n.getDir() != null) {
+				if (n.equals(raiz)) {
+					i = calcularIndex(n.getDir(), 0);
+					n.setNodosDir(i);
+				} else {
+					i = calcularIndex(n.getDir(), i);
+					n.setNodosDir(i - n.getNodosEsq() - 1);
+				}
+			}
+		}
+		return i;
+	}
 
 //	public void preOrdemIteRaiz() {
 //		preOrdemIterativa(raiz, VisitarFlag.IMPRIMIR);

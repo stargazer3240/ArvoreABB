@@ -35,9 +35,9 @@ public class ArvoreView {
 			System.out.println("Arquivo não encontrado!");
 		}*/
 
-		abb.ordemSimetrica(VisitarFlag.IMPRIMIR);
+		abb.preOrdem(VisitarFlag.IMPRIMIR);
 
-		System.out.println("\nEnesimo: " + abb.enesimoElemento(3));
+		//System.out.println("\nEnesimo: " + abb.enesimoElemento(3));
 
 		/*
 		// delete leaf node
