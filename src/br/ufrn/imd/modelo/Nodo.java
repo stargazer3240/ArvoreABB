@@ -16,8 +16,8 @@ public class Nodo {
 	public Nodo(int valor) {
 		this.valor = valor;
 		this.altura = 1;
-		Nodo esq = null;
-		Nodo dir = null;
+		esq = null;
+		dir = null;
 		nodosEsq = 0;
 		nodosDir = 0;
 	}
