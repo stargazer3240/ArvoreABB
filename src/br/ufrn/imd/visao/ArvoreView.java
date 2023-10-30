@@ -33,7 +33,7 @@ public class ArvoreView {
 		} catch (FileNotFoundException e) {
 			System.out.println("Arquivo não encontrado!");
 		}
-		
+
 //		try {
 //			File comandosInput = new File("input" + File.separator + "comandos.txt");
 //			Scanner scanner = new Scanner(comandosInput);
@@ -45,8 +45,6 @@ public class ArvoreView {
 //		} catch (FileNotFoundException e) {
 //			System.out.println("Arquivo não encontrado!");
 //		}
-
-//		abb.preOrdem(VisitarFlag.IMPRIMIR);
 
 //		System.out.println("\nEnesimo: " + abb.enesimoElemento(3));
 
@@ -74,6 +72,6 @@ public class ArvoreView {
 //		System.out.println("Buscar 50: " + abb.buscar(50));
 //		System.out.println("Buscar 12: " + abb.buscar(12));
 //		
-		
+
 	}
 }
