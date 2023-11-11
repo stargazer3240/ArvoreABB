@@ -5,6 +5,8 @@
 
 package br.ufrn.imd.modelo;
 
+import java.util.Stack;
+
 public class ArvoreABB {
 	private Nodo raiz;
 
@@ -178,11 +180,33 @@ public class ArvoreABB {
 		return -1;
 	}
 
+	public int posicao(int x) {
+		Stack<Nodo> s = new Stack<Nodo>();
+		Nodo atual = raiz;
+
+		int posicao = 0;
+		while (atual != null || s.size() > 0) {
+			while (atual != null) {
+				s.push(atual);
+				atual = atual.getEsq();
+			}
+			atual = s.pop();
+			posicao++;
+			if (atual.getValor() == x) {
+				return posicao;
+			}
+			atual = atual.getDir();
+		}
+
+		return 0;
+	}
+
 	public void imprimirPreOrdem() {
 		System.out.println("Arvore em pre-ordem:");
 		imprimirPreOrdemRec(raiz);
 		System.out.println();
 	}
+
 	public void imprimirPreOrdemRec(Nodo nodo) {
 		if (nodo != null) {
 			System.out.print(nodo.getValor() + " ");
@@ -190,24 +214,27 @@ public class ArvoreABB {
 			imprimirPreOrdemRec(nodo.getDir());
 		}
 	}
-	public void imprimirOrdemSimetrica(){
+
+	public void imprimirOrdemSimetrica() {
 		System.out.println("Arvore em ordem simetrica:");
 		imprimirOrdemSimetricaRec(raiz);
 		System.out.println();
 	}
-	private void imprimirOrdemSimetricaRec(Nodo nodo)
-    {
-		if(nodo != null){
+
+	private void imprimirOrdemSimetricaRec(Nodo nodo) {
+		if (nodo != null) {
 			imprimirOrdemSimetricaRec(nodo.getEsq());
 			System.out.print(nodo.getValor() + " ");
 			imprimirOrdemSimetricaRec(nodo.getDir());
 		}
 	}
+
 	public void imprimirPosOrdem() {
 		System.out.println("Arvore em pos-ordem:");
 		imprimirPosOrdemRec(raiz);
 		System.out.println();
 	}
+
 	public void imprimirPosOrdemRec(Nodo nodo) {
 		if (nodo != null) {
 			imprimirPosOrdemRec(nodo.getEsq());
