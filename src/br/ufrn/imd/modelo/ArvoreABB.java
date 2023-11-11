@@ -198,6 +198,25 @@ public class ArvoreABB {
 		return 0;
 	}
 
+	public Nodo nodoPosicao(int x) {
+		Stack<Nodo> s = new Stack<Nodo>();
+		Nodo atual = raiz;
+
+		while (atual != null || s.size() > 0) {
+			while (atual != null) {
+				s.push(atual);
+				atual = atual.getEsq();
+			}
+			atual = s.pop();
+			if (atual.getValor() == x) {
+				return atual;
+			}
+			atual = atual.getDir();
+		}
+
+		return null;
+	}
+
 	public int mediana() {
 		if (raiz != null) {
 			int qtdNodos = raiz.getNodosEsq() + raiz.getNodosDir() + 1;
@@ -207,6 +226,29 @@ public class ArvoreABB {
 			return enesimoElemento(qtdNodos / 2 + 1);
 		}
 		return 0;
+	}
+
+	public double media(int x) {
+		Nodo atual = nodoPosicao(x);
+		return somaNodos(atual) / 2;
+	}
+
+	public int somaNodos(Nodo raiz) {
+		Stack<Nodo> s = new Stack<Nodo>();
+		Nodo atual = raiz;
+
+		int soma = 0;
+		while (atual != null || s.size() > 0) {
+			while (atual != null) {
+				s.push(atual);
+				atual = atual.getEsq();
+			}
+			atual = s.pop();
+			soma += atual.getValor();
+			atual = atual.getDir();
+		}
+
+		return soma;
 	}
 
 	public void imprimirPreOrdem() {
