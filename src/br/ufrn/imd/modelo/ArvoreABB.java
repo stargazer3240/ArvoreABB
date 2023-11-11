@@ -303,7 +303,7 @@ public class ArvoreABB {
 
 	public void imprimeArvore(int flag) {
 		if (flag == 1) {
-			imprimeArvoreFormato1(raiz, 0);
+			imprimeArvoreFormato1(raiz, 0, raiz.getAltura());
 		} else if (flag == 2) {
 			imprimeArvoreFormato2(raiz);
 		} else {
@@ -311,18 +311,24 @@ public class ArvoreABB {
 		}
 	}
 
-	private void imprimeArvoreFormato1(Nodo n, int nivel) {
+	private void imprimeArvoreFormato1(Nodo n, int nivel, int hifens) {
 		if (n != null) {
-			
 			for (int i = 0; i < nivel; i++) {
-				System.out.print("\t");
+				System.out.print("    ");
 			}
-			System.out.println(n.getValor() + "-------------");
-			imprimeArvoreFormato1(n.getEsq(), nivel + 1);
-			imprimeArvoreFormato1(n.getDir(), nivel + 1);
+			System.out.println(n.getValor() + formadorHifens(1) + formadorHifens(hifens));
+			imprimeArvoreFormato1(n.getEsq(), nivel + 1, hifens - 1);
+			imprimeArvoreFormato1(n.getDir(), nivel + 1, hifens - 1);
 
-			
 		}
+	}
+
+	private String formadorHifens(int n) {
+		String s = "";
+		for (int i = 0; i < n; i++) {
+			s += "----";
+		}
+		return s;
 	}
 
 	private void imprimeArvoreFormato2(Nodo n) {
