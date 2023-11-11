@@ -313,15 +313,15 @@ public class ArvoreABB {
 
 	private void imprimeArvoreFormato1(Nodo n, int nivel) {
 		if (n != null) {
-			imprimeArvoreFormato1(n.getDir(), nivel + 1);
-
+			
 			for (int i = 0; i < nivel; i++) {
 				System.out.print("\t");
 			}
-
 			System.out.println(n.getValor() + "-------------");
-
 			imprimeArvoreFormato1(n.getEsq(), nivel + 1);
+			imprimeArvoreFormato1(n.getDir(), nivel + 1);
+
+			
 		}
 	}
 
