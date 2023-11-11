@@ -179,6 +179,7 @@ public class ArvoreABB {
 	}
 
 	public void imprimirPreOrdem() {
+		System.out.println("Arvore em pre-ordem:");
 		imprimirPreOrdemRec(raiz);
 		System.out.println();
 	}
@@ -190,6 +191,7 @@ public class ArvoreABB {
 		}
 	}
 	public void imprimirOrdemSimetrica(){
+		System.out.println("Arvore em ordem simetrica:");
 		imprimirOrdemSimetricaRec(raiz);
 		System.out.println();
 	}
@@ -202,6 +204,7 @@ public class ArvoreABB {
 		}
 	}
 	public void imprimirPosOrdem() {
+		System.out.println("Arvore em pos-ordem:");
 		imprimirPosOrdemRec(raiz);
 		System.out.println();
 	}
