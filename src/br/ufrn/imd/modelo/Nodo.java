@@ -10,16 +10,16 @@ public class Nodo {
 	private int altura;
 	private Nodo esq;
 	private Nodo dir;
-	private int nodosEsq;
-	private int nodosDir;
+	private int qtdNodosEsq;
+	private int qtdNodosDir;
 
 	public Nodo(int valor) {
 		this.valor = valor;
 		this.altura = 1;
 		esq = null;
 		dir = null;
-		nodosEsq = 0;
-		nodosDir = 0;
+		qtdNodosEsq = 0;
+		qtdNodosDir = 0;
 	}
 
 	public int getValor() {
@@ -55,18 +55,18 @@ public class Nodo {
 	}
 
 	public int getNodosEsq() {
-		return nodosEsq;
+		return qtdNodosEsq;
 	}
 
-	public void setNodosEsq(int nodosEsq) {
-		this.nodosEsq = nodosEsq;
+	public void setNodosEsq(int qtdNodosEsq) {
+		this.qtdNodosEsq = qtdNodosEsq;
 	}
 
 	public int getNodosDir() {
-		return nodosDir;
+		return qtdNodosDir;
 	}
 
-	public void setNodosDir(int nodosDir) {
-		this.nodosDir = nodosDir;
+	public void setNodosDir(int qtdNodosDir) {
+		this.qtdNodosDir = qtdNodosDir;
 	}
 }

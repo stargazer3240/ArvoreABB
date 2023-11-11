@@ -12,7 +12,6 @@ import java.util.Scanner;
 import br.ufrn.imd.modelo.ArvoreABB;
 
 public class ArvoreView {
-
 	public static void main(String[] args) {
 		ArvoreABB abb = new ArvoreABB();
 
@@ -39,8 +38,5 @@ public class ArvoreView {
 		} catch (FileNotFoundException e) {
 			System.out.println("Arquivo não encontrado!");
 		}
-
-		abb.imprimeArvore(1);
-		abb.imprimeArvore(2);
 	}
 }

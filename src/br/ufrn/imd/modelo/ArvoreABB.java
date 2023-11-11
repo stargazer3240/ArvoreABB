@@ -71,18 +71,18 @@ public class ArvoreABB {
 	}
 
 	public void atribuirAltura() {
-		percursoPosOrdem(raiz);
+		posOrdemAltura(raiz);
 	}
 
-	public void percursoPosOrdem(Nodo n) {
+	public void posOrdemAltura(Nodo n) {
 		if (n != null) {
 			Nodo nEsq = n.getEsq();
 			if (nEsq != null) {
-				percursoPosOrdem(nEsq);
+				posOrdemAltura(nEsq);
 			}
 			Nodo nDir = n.getDir();
 			if (nDir != null) {
-				percursoPosOrdem(nDir);
+				posOrdemAltura(nDir);
 			}
 			calcularAltura(n);
 		}
@@ -113,45 +113,32 @@ public class ArvoreABB {
 		return buscar(n.getDir(), valor);
 	}
 
-	// Deletar um no da arvore
 	public void deletar(int chave) {
 		raiz = deletar(raiz, chave);
 	}
 
-	// Funcao recursiva utilizada para deletar um no
 	public Nodo deletar(Nodo n, int valor) {
 		if (n == null) {
 			return n;
 		}
-		// Percorrer a arvore
-		// Percorrer pela subarvore esquerda
 		if (valor < n.getValor()) {
 			n.setEsq(deletar(n.getEsq(), valor));
-		}
-		// Percorrer pela subarvore direita
-		else if (valor > n.getValor()) {
+		} else if (valor > n.getValor()) {
 			n.setDir(deletar(n.getDir(), valor));
 		} else {
-			// Se o no possui apenas um filho
 			if (n.getEsq() == null) {
 				return n.getDir();
 			} else if (n.getDir() == null) {
 				return n.getEsq();
 			}
-			// Se o no possui dois filhos
-			// Pegar o sucessor de menor valor da subarvore da direita
 			n.setValor(menorValor(n.getDir()));
-
-			// Deletar o sucessor de menor valor
 			n.setDir(deletar(n.getDir(), n.getValor()));
 		}
 		return n;
 	}
 
 	public int menorValor(Nodo n) {
-		// Inicialmente, a menor chave eh a propria raiz
 		int menorChave = n.getValor();
-		// Vamos encontrar e retornar a menorChave
 		while (n.getEsq() != null) {
 			menorChave = n.getEsq().getValor();
 			n = n.getEsq();
@@ -341,48 +328,6 @@ public class ArvoreABB {
 			imprimeArvoreFormato2(n.getEsq());
 			imprimeArvoreFormato2(n.getDir());
 			System.out.print(")");
-		}
-	}
-
-	public void imprimirPreOrdem() {
-		System.out.println("Arvore em pre-ordem:");
-		imprimirPreOrdemRec(raiz);
-		System.out.println();
-	}
-
-	public void imprimirPreOrdemRec(Nodo nodo) {
-		if (nodo != null) {
-			System.out.print(nodo.getValor() + " ");
-			imprimirPreOrdemRec(nodo.getEsq());
-			imprimirPreOrdemRec(nodo.getDir());
-		}
-	}
-
-	public void imprimirOrdemSimetrica() {
-		System.out.println("Arvore em ordem simetrica:");
-		imprimirOrdemSimetricaRec(raiz);
-		System.out.println();
-	}
-
-	private void imprimirOrdemSimetricaRec(Nodo nodo) {
-		if (nodo != null) {
-			imprimirOrdemSimetricaRec(nodo.getEsq());
-			System.out.print(nodo.getValor() + " ");
-			imprimirOrdemSimetricaRec(nodo.getDir());
-		}
-	}
-
-	public void imprimirPosOrdem() {
-		System.out.println("Arvore em pos-ordem:");
-		imprimirPosOrdemRec(raiz);
-		System.out.println();
-	}
-
-	public void imprimirPosOrdemRec(Nodo nodo) {
-		if (nodo != null) {
-			imprimirPosOrdemRec(nodo.getEsq());
-			imprimirPosOrdemRec(nodo.getDir());
-			System.out.print(nodo.getValor() + " ");
 		}
 	}
 }
