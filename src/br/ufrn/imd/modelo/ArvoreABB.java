@@ -333,7 +333,12 @@ public class ArvoreABB {
 
 	private void imprimeArvoreFormato2(Nodo n) {
 		if (n != null) {
-			System.out.print("(" + n.getValor());
+			if(n == this.raiz){
+				System.out.print("(" + n.getValor());
+			}
+			else{
+				System.out.print(" (" + n.getValor());
+			}
 			imprimeArvoreFormato2(n.getEsq());
 			imprimeArvoreFormato2(n.getDir());
 			System.out.print(")");
