@@ -177,22 +177,36 @@ public class ArvoreABB {
 		}
 		return -1;
 	}
-}
 
-//	public void percursoPreOrdem() {
-//		percursoPreOrdem(raiz);
-//	}
-//
-//	public void percursoPreOrdem(Nodo n) {
-//		if (n != null) {
-//			visitar(n);
-//			Nodo nEsq = n.getEsq();
-//			if (nEsq != null) {
-//				percursoPreOrdem(nEsq);
-//			}
-//			Nodo nDir = n.getDir();
-//			if (nDir != null) {
-//				percursoPreOrdem(nDir);
-//			}
-//		}
-//	}
+	public void imprimirPreOrdem() {
+		imprimirPreOrdemRec(raiz);
+	}
+	public void imprimirPreOrdemRec(Nodo nodo) {
+		if (nodo != null) {
+			System.out.print(nodo.getValor() + " ");
+			imprimirPreOrdemRec(nodo.getEsq());
+			imprimirPreOrdemRec(nodo.getDir());
+		}
+	}
+	public void imprimirOrdemSimetrica(){
+		imprimirOrdemSimetricaRec(raiz);
+	}
+	private void imprimirOrdemSimetricaRec(Nodo nodo)
+    {
+		if(nodo != null){
+			imprimirOrdemSimetricaRec(nodo.getEsq());
+			System.out.print(nodo.getValor() + " ");
+			imprimirOrdemSimetricaRec(nodo.getDir());
+		}
+	}
+	public void imprimirPosOrdem() {
+		imprimirPosOrdemRec(raiz);
+	}
+	public void imprimirPosOrdemRec(Nodo nodo) {
+		if (nodo != null) {
+			imprimirPosOrdemRec(nodo.getEsq());
+			imprimirPosOrdemRec(nodo.getDir());
+			System.out.print(nodo.getValor() + " ");
+		}
+	}
+}
