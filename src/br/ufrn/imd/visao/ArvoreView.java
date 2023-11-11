@@ -47,7 +47,7 @@ public class ArvoreView {
 //		}
 
 		
-		System.out.println(abb.posicao(500));
+		System.out.println(abb.mediana());
 //		abb.imprimirPreOrdem();
 //		abb.imprimirOrdemSimetrica();
 //		abb.imprimirPosOrdem();

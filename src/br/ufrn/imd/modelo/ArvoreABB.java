@@ -159,11 +159,8 @@ public class ArvoreABB {
 		return menorChave;
 	}
 
-	public void enesimoElemento(int n) {
-		int enesimo = enesimoElemento(raiz, n);
-		if (enesimo != -1) {
-			System.out.println(enesimo);
-		}
+	public int enesimoElemento(int n) {
+		return enesimoElemento(raiz, n);
 	}
 
 	private int enesimoElemento(Nodo nodo, int n) {
@@ -198,6 +195,17 @@ public class ArvoreABB {
 			atual = atual.getDir();
 		}
 
+		return 0;
+	}
+
+	public int mediana() {
+		if (raiz != null) {
+			int qtdNodos = raiz.getNodosEsq() + raiz.getNodosDir() + 1;
+			if (qtdNodos % 2 == 0) {
+				return enesimoElemento(qtdNodos / 2);
+			}
+			return enesimoElemento(qtdNodos / 2 + 1);
+		}
 		return 0;
 	}
 
