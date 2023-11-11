@@ -316,7 +316,7 @@ public class ArvoreABB {
 			for (int i = 0; i < nivel; i++) {
 				System.out.print("    ");
 			}
-			System.out.println(n.getValor() + formadorHifens(1) + formadorHifens(hifens));
+			System.out.println(String.format("%3d", n.getValor()) + formadorHifens(1) + formadorHifens(hifens));
 			imprimeArvoreFormato1(n.getEsq(), nivel + 1, hifens - 1);
 			imprimeArvoreFormato1(n.getDir(), nivel + 1, hifens - 1);
 
@@ -333,10 +333,9 @@ public class ArvoreABB {
 
 	private void imprimeArvoreFormato2(Nodo n) {
 		if (n != null) {
-			if(n == this.raiz){
+			if (n == this.raiz) {
 				System.out.print("(" + n.getValor());
-			}
-			else{
+			} else {
 				System.out.print(" (" + n.getValor());
 			}
 			imprimeArvoreFormato2(n.getEsq());
