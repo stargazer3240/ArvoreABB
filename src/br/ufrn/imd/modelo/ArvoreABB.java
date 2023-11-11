@@ -180,6 +180,7 @@ public class ArvoreABB {
 
 	public void imprimirPreOrdem() {
 		imprimirPreOrdemRec(raiz);
+		System.out.println();
 	}
 	public void imprimirPreOrdemRec(Nodo nodo) {
 		if (nodo != null) {
@@ -190,6 +191,7 @@ public class ArvoreABB {
 	}
 	public void imprimirOrdemSimetrica(){
 		imprimirOrdemSimetricaRec(raiz);
+		System.out.println();
 	}
 	private void imprimirOrdemSimetricaRec(Nodo nodo)
     {
@@ -201,6 +203,7 @@ public class ArvoreABB {
 	}
 	public void imprimirPosOrdem() {
 		imprimirPosOrdemRec(raiz);
+		System.out.println();
 	}
 	public void imprimirPosOrdemRec(Nodo nodo) {
 		if (nodo != null) {

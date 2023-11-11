@@ -46,43 +46,39 @@ public class ArvoreView {
 //			System.out.println("Arquivo não encontrado!");
 //		}
 
-//		System.out.println("\nEnesimo: " + abb.enesimoElemento(3));
+
 
 		System.out.println("Arvore em pre-ordem:");
 		abb.imprimirPreOrdem();
-		System.out.println();
 
 		System.out.println("Arvore em ordem simetrica:");
 		abb.imprimirOrdemSimetrica();
-		System.out.println();
 
 		System.out.println("Arvore em pos-ordem:");
 		abb.imprimirPosOrdem();
+
 		System.out.println();
-		
-//		// delete leaf node
+		System.out.println("Enesimo em ordem simetrica: ");
+		abb.enesimoElemento(3);
+
+		// delete leaf node
 		System.out.println();
 		System.out.println("Deletar 12:");
 		abb.deletar(12);
 		abb.imprimirOrdemSimetrica();
-		System.out.println();
 		// delete the node with one child
 		System.out.println("Deletar 90:");
 		abb.deletar(90);
 		abb.imprimirOrdemSimetrica();
-		System.out.println();
 		// delete node with two children
 		System.out.println("Deletar 45:");
 		abb.deletar(45);
 		abb.imprimirOrdemSimetrica();
-//		
-//
-//		
-//		System.out.println();
-//		System.out.println();
-//		System.out.println("Buscar 50: " + abb.buscar(50));
-//		System.out.println("Buscar 12: " + abb.buscar(12));
-//		
+		
+		System.out.println();
+		System.out.println("Buscar 50: " + abb.buscar(50));
+		System.out.println("Buscar 12: " + abb.buscar(12));
+		
 
 	}
 }
