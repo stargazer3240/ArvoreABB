@@ -233,7 +233,7 @@ public class ArvoreABB {
 		return somaNodos(atual) / 2;
 	}
 
-	public int somaNodos(Nodo raiz) {
+	public double somaNodos(Nodo raiz) {
 		Stack<Nodo> s = new Stack<Nodo>();
 		Nodo atual = raiz;
 
@@ -249,6 +249,35 @@ public class ArvoreABB {
 		}
 
 		return soma;
+	}
+	
+	public boolean ehCheia() {
+		return ehCompleta() && ehEstritaBinaria();
+	}
+	
+	public boolean ehCompleta() {
+		int qtdNodos = raiz.getNodosEsq() + raiz.getNodosDir() + 1;
+		int alturaArvore = raiz.getAltura();
+		return Math.pow(2, alturaArvore - 1) <= qtdNodos && qtdNodos <= Math.pow(2, alturaArvore) - 1;
+	}
+	
+	private boolean ehEstritaBinaria() {
+		Stack<Nodo> s = new Stack<Nodo>();
+		Nodo atual = raiz;
+
+		while (atual != null || s.size() > 0) {
+			while (atual != null) {
+				s.push(atual);
+				atual = atual.getEsq();
+			}
+			atual = s.pop();
+			if(atual.getAltura() != 1 && (atual.getEsq() == null || atual.getDir() == null)) {
+				return false;
+			}
+			atual = atual.getDir();
+		}
+
+		return true;
 	}
 
 	public void imprimirPreOrdem() {
