@@ -15,12 +15,11 @@ public class ArvoreView {
 
 	public static void main(String[] args) {
 		ArvoreABB abb = new ArvoreABB();
-		abb.inserir(45);
-		abb.inserir(10);
-		abb.inserir(7);
-		abb.inserir(12);
-		abb.inserir(90);
-		abb.inserir(50);
+		abb.inserir(5);
+		abb.inserir(3);
+		abb.inserir(8);
+		abb.inserir(6);
+		abb.inserir(9);
 
 		/*try {
 			File arvoreInput = new File("input" + File.separator + "arvore.txt");
@@ -46,9 +45,9 @@ public class ArvoreView {
 //			System.out.println("Arquivo não encontrado!");
 //		}
 
-		
-		System.out.println(abb.ehCheia());
-//		abb.imprimirPreOrdem();
+		abb.imprimeArvore(1);
+		abb.imprimeArvore(2);
+
 //		abb.imprimirOrdemSimetrica();
 //		abb.imprimirPosOrdem();
 //

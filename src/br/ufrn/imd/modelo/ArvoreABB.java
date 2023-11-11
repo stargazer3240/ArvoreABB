@@ -178,16 +178,16 @@ public class ArvoreABB {
 	}
 
 	public int posicao(int x) {
-		Stack<Nodo> s = new Stack<Nodo>();
+		Stack<Nodo> pilha = new Stack<Nodo>();
 		Nodo atual = raiz;
 
 		int posicao = 0;
-		while (atual != null || s.size() > 0) {
+		while (atual != null || !pilha.isEmpty()) {
 			while (atual != null) {
-				s.push(atual);
+				pilha.push(atual);
 				atual = atual.getEsq();
 			}
-			atual = s.pop();
+			atual = pilha.pop();
 			posicao++;
 			if (atual.getValor() == x) {
 				return posicao;
@@ -199,15 +199,15 @@ public class ArvoreABB {
 	}
 
 	public Nodo nodoPosicao(int x) {
-		Stack<Nodo> s = new Stack<Nodo>();
+		Stack<Nodo> pilha = new Stack<Nodo>();
 		Nodo atual = raiz;
 
-		while (atual != null || s.size() > 0) {
+		while (atual != null || !pilha.isEmpty()) {
 			while (atual != null) {
-				s.push(atual);
+				pilha.push(atual);
 				atual = atual.getEsq();
 			}
-			atual = s.pop();
+			atual = pilha.pop();
 			if (atual.getValor() == x) {
 				return atual;
 			}
@@ -234,50 +234,104 @@ public class ArvoreABB {
 	}
 
 	public double somaNodos(Nodo raiz) {
-		Stack<Nodo> s = new Stack<Nodo>();
+		Stack<Nodo> pilha = new Stack<Nodo>();
 		Nodo atual = raiz;
 
 		int soma = 0;
-		while (atual != null || s.size() > 0) {
+		while (atual != null || !pilha.isEmpty()) {
 			while (atual != null) {
-				s.push(atual);
+				pilha.push(atual);
 				atual = atual.getEsq();
 			}
-			atual = s.pop();
+			atual = pilha.pop();
 			soma += atual.getValor();
 			atual = atual.getDir();
 		}
 
 		return soma;
 	}
-	
+
 	public boolean ehCheia() {
 		return ehCompleta() && ehEstritaBinaria();
 	}
-	
+
 	public boolean ehCompleta() {
 		int qtdNodos = raiz.getNodosEsq() + raiz.getNodosDir() + 1;
 		int alturaArvore = raiz.getAltura();
 		return Math.pow(2, alturaArvore - 1) <= qtdNodos && qtdNodos <= Math.pow(2, alturaArvore) - 1;
 	}
-	
+
 	private boolean ehEstritaBinaria() {
-		Stack<Nodo> s = new Stack<Nodo>();
+		Stack<Nodo> pilha = new Stack<Nodo>();
 		Nodo atual = raiz;
 
-		while (atual != null || s.size() > 0) {
+		while (atual != null || !pilha.isEmpty()) {
 			while (atual != null) {
-				s.push(atual);
+				pilha.push(atual);
 				atual = atual.getEsq();
 			}
-			atual = s.pop();
-			if(atual.getAltura() != 1 && (atual.getEsq() == null || atual.getDir() == null)) {
+			atual = pilha.pop();
+			if (atual.getAltura() != 1 && (atual.getEsq() == null || atual.getDir() == null)) {
 				return false;
 			}
 			atual = atual.getDir();
 		}
 
 		return true;
+	}
+
+	public String preOrdemString() {
+		return preOrdemString(raiz);
+	}
+
+	private String preOrdemString(Nodo n) {
+		String s = "";
+		Stack<Nodo> pilha = new Stack<Nodo>();
+		pilha.push(raiz);
+		while (!pilha.isEmpty()) {
+			Nodo atual = pilha.pop();
+			s += atual.getValor() + " ";
+			if (atual.getDir() != null) {
+				pilha.push(atual.getDir());
+			}
+			if (atual.getEsq() != null) {
+				pilha.push(atual.getEsq());
+			}
+		}
+		return s;
+	}
+
+	public void imprimeArvore(int flag) {
+		if (flag == 1) {
+			imprimeArvoreFormato1(raiz, 0);
+		} else if (flag == 2) {
+			imprimeArvoreFormato2(raiz);
+		} else {
+			System.out.println("Formato não suportado.");
+		}
+	}
+
+	private void imprimeArvoreFormato1(Nodo n, int nivel) {
+		if (n != null) {
+			imprimeArvoreFormato1(n.getDir(), nivel + 1);
+
+			for (int i = 0; i < nivel; i++) {
+				System.out.print("\t");
+			}
+
+			System.out.println(n.getValor() + "-------------");
+
+			imprimeArvoreFormato1(n.getEsq(), nivel + 1);
+		}
+	}
+
+	private void imprimeArvoreFormato2(Nodo n) {
+		if (n != null) {
+			System.out.print("(" + n.getValor());
+			imprimeArvoreFormato2(n.getEsq());
+			imprimeArvoreFormato2(n.getDir());
+			System.out.print(")");
+		}
 	}
 
 	public void imprimirPreOrdem() {
