@@ -9,6 +9,7 @@ import java.util.Stack;
 
 public class ArvoreABB {
 	private Nodo raiz;
+	private int tamanho;
 
 	public Nodo getRaiz() {
 		return raiz;
@@ -18,14 +19,10 @@ public class ArvoreABB {
 		this.raiz = raiz;
 	}
 
-	public int getAlturaArvore() {
-		return raiz.getAltura();
-	}
-
 	public void inserir(int valor) {
 		this.raiz = inserir(raiz, valor);
-		this.atribuirEsqDir();
 		this.atribuirAltura();
+		tamanho++;
 	}
 
 	private Nodo inserir(Nodo n, int valor) {
@@ -40,30 +37,6 @@ public class ArvoreABB {
 			n.setDir(inserir(n.getDir(), valor));
 		}
 		return n;
-	}
-
-	public void atribuirEsqDir() {
-		calcularEsqDir(raiz, 0);
-	}
-
-	private int calcularEsqDir(Nodo n, int i) {
-		if (n != null) {
-			if (n.getEsq() != null) {
-				i = calcularEsqDir(n.getEsq(), i);
-				n.setNodosEsq(i);
-			}
-			i++;
-			if (n.getDir() != null) {
-				if (n.equals(raiz)) {
-					i = calcularEsqDir(n.getDir(), 0);
-					n.setNodosDir(i);
-				} else {
-					i = calcularEsqDir(n.getDir(), i);
-					n.setNodosDir(i - n.getNodosEsq() - 1);
-				}
-			}
-		}
-		return i;
 	}
 
 	public void atribuirAltura() {
@@ -110,8 +83,8 @@ public class ArvoreABB {
 
 	public void deletar(int valor) {
 		raiz = deletar(raiz, valor);
-		this.atribuirEsqDir();
 		this.atribuirAltura();
+		tamanho--;
 	}
 
 	private Nodo deletar(Nodo n, int valor) {
@@ -144,22 +117,25 @@ public class ArvoreABB {
 	}
 
 	public int enesimoElemento(int n) {
-		return enesimoElemento(raiz, n);
-	}
+		if (n <= tamanho) {
+			Stack<Nodo> pilha = new Stack<Nodo>();
+			Nodo atual = raiz;
 
-	private int enesimoElemento(Nodo nodo, int n) {
-		if (nodo != null) {
-			int nodosEsq = nodo.getNodosEsq();
-			System.out.println("banana");
-			if (n <= nodosEsq) {
-				return enesimoElemento(nodo.getEsq(), n);
-			} else if (n == nodo.getNodosEsq() + 1) {
-				return nodo.getValor();
-			} else {
-				return enesimoElemento(nodo.getDir(), n - nodosEsq - 1);
+			int i = 1;
+			while (atual != null || !pilha.isEmpty()) {
+				while (atual != null) {
+					pilha.push(atual);
+					atual = atual.getEsq();
+				}
+				atual = pilha.pop();
+				if (i == n) {
+					return atual.getValor();
+				}
+				atual = atual.getDir();
+				i++;
 			}
 		}
-		return -1;
+		return 0;
 	}
 
 	public int posicao(int x) {
@@ -179,19 +155,15 @@ public class ArvoreABB {
 			}
 			atual = atual.getDir();
 		}
-
 		return 0;
 	}
 
 	public int mediana() {
 		if (raiz != null) {
-			int qtdNodos = raiz.getNodosEsq() + raiz.getNodosDir() + 1;
-			System.out.println("TESTE          QtdNodos " + qtdNodos + " " + (qtdNodos / 2) + " " + (qtdNodos / 2 + 1)
-					+ " " + enesimoElemento(qtdNodos / 2) + " " + enesimoElemento(qtdNodos / 2 + 1));
-			if (qtdNodos % 2 == 0) {
-				return enesimoElemento(qtdNodos / 2);
+			if (tamanho % 2 == 0) {
+				return enesimoElemento(tamanho / 2);
 			}
-			return enesimoElemento(qtdNodos / 2 + 1);
+			return enesimoElemento(tamanho / 2 + 1);
 		}
 		return 0;
 	}
@@ -245,9 +217,8 @@ public class ArvoreABB {
 	}
 
 	public boolean ehCompleta() {
-		int qtdNodos = raiz.getNodosEsq() + raiz.getNodosDir() + 1;
 		int alturaArvore = raiz.getAltura();
-		return Math.pow(2, alturaArvore - 1) <= qtdNodos && qtdNodos <= Math.pow(2, alturaArvore) - 1;
+		return Math.pow(2, alturaArvore - 1) <= tamanho && tamanho <= Math.pow(2, alturaArvore) - 1;
 	}
 
 	private boolean ehEstritaBinaria() {
