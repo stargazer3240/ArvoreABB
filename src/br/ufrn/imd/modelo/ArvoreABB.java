@@ -22,10 +22,6 @@ public class ArvoreABB {
 		return raiz.getAltura();
 	}
 
-	public void imprimir(Nodo n) {
-		System.out.println(n.getValor() + " ");
-	}
-
 	public void inserir(int valor) {
 		this.raiz = inserir(raiz, valor);
 		this.atribuirEsqDir();
@@ -74,7 +70,7 @@ public class ArvoreABB {
 		posOrdemAltura(raiz);
 	}
 
-	public void posOrdemAltura(Nodo n) {
+	private void posOrdemAltura(Nodo n) {
 		if (n != null) {
 			Nodo nEsq = n.getEsq();
 			if (nEsq != null) {
@@ -102,8 +98,7 @@ public class ArvoreABB {
 		return buscar(raiz, valor) != null;
 	}
 
-	public Nodo buscar(Nodo n, int valor) {
-
+	private Nodo buscar(Nodo n, int valor) {
 		if (n == null || n.getValor() == valor) {
 			return n;
 		}
@@ -113,11 +108,13 @@ public class ArvoreABB {
 		return buscar(n.getDir(), valor);
 	}
 
-	public void deletar(int chave) {
-		raiz = deletar(raiz, chave);
+	public void deletar(int valor) {
+		raiz = deletar(raiz, valor);
+		this.atribuirEsqDir();
+		this.atribuirAltura();
 	}
 
-	public Nodo deletar(Nodo n, int valor) {
+	private Nodo deletar(Nodo n, int valor) {
 		if (n == null) {
 			return n;
 		}
@@ -137,7 +134,7 @@ public class ArvoreABB {
 		return n;
 	}
 
-	public int menorValor(Nodo n) {
+	private int menorValor(Nodo n) {
 		int menorChave = n.getValor();
 		while (n.getEsq() != null) {
 			menorChave = n.getEsq().getValor();
@@ -153,6 +150,7 @@ public class ArvoreABB {
 	private int enesimoElemento(Nodo nodo, int n) {
 		if (nodo != null) {
 			int nodosEsq = nodo.getNodosEsq();
+			System.out.println("banana");
 			if (n <= nodosEsq) {
 				return enesimoElemento(nodo.getEsq(), n);
 			} else if (n == nodo.getNodosEsq() + 1) {
@@ -185,7 +183,26 @@ public class ArvoreABB {
 		return 0;
 	}
 
-	public Nodo nodoPosicao(int x) {
+	public int mediana() {
+		if (raiz != null) {
+			int qtdNodos = raiz.getNodosEsq() + raiz.getNodosDir() + 1;
+			System.out.println("TESTE          QtdNodos " + qtdNodos + " " + (qtdNodos / 2) + " " + (qtdNodos / 2 + 1)
+					+ " " + enesimoElemento(qtdNodos / 2) + " " + enesimoElemento(qtdNodos / 2 + 1));
+			if (qtdNodos % 2 == 0) {
+				return enesimoElemento(qtdNodos / 2);
+			}
+			return enesimoElemento(qtdNodos / 2 + 1);
+		}
+		return 0;
+	}
+
+	public double media(int x) {
+		Nodo atual = nodoPosicao(x);
+		return somaNodos(atual) / 2;
+	}
+
+	// Retorna o nodo na posição x.
+	private Nodo nodoPosicao(int x) {
 		Stack<Nodo> pilha = new Stack<Nodo>();
 		Nodo atual = raiz;
 
@@ -204,23 +221,8 @@ public class ArvoreABB {
 		return null;
 	}
 
-	public int mediana() {
-		if (raiz != null) {
-			int qtdNodos = raiz.getNodosEsq() + raiz.getNodosDir() + 1;
-			if (qtdNodos % 2 == 0) {
-				return enesimoElemento(qtdNodos / 2);
-			}
-			return enesimoElemento(qtdNodos / 2 + 1);
-		}
-		return 0;
-	}
-
-	public double media(int x) {
-		Nodo atual = nodoPosicao(x);
-		return somaNodos(atual) / 2;
-	}
-
-	public double somaNodos(Nodo raiz) {
+	// Soma os valores de todos os nodos a partir do nodo input.
+	private double somaNodos(Nodo raiz) {
 		Stack<Nodo> pilha = new Stack<Nodo>();
 		Nodo atual = raiz;
 
@@ -293,8 +295,9 @@ public class ArvoreABB {
 			imprimeArvoreFormato1(raiz, 0, raiz.getAltura());
 		} else if (flag == 2) {
 			imprimeArvoreFormato2(raiz);
+			System.out.println();
 		} else {
-			System.out.println("Formato não suportado.");
+			System.out.println("Formato " + flag + " não suportado.");
 		}
 	}
 
