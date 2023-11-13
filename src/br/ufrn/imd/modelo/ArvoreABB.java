@@ -170,7 +170,10 @@ public class ArvoreABB {
 
 	public double media(int x) {
 		Nodo atual = nodoPosicao(x);
-		return somaNodos(atual) / tamanho;
+		int[] array = percorrerSubArvore(atual);
+		double soma = array[0];
+		double qtd = array[1];
+		return soma / qtd;
 	}
 
 	// Retorna o nodo na posição x.
@@ -193,12 +196,13 @@ public class ArvoreABB {
 		return null;
 	}
 
-	// Soma os valores de todos os nodos a partir do nodo input.
-	private double somaNodos(Nodo raiz) {
+	// Percorre os nodos de uma subárvore, retornando a soma e a qtd de nós.
+	private int[] percorrerSubArvore(Nodo raiz) {
 		Stack<Nodo> pilha = new Stack<Nodo>();
 		Nodo atual = raiz;
 
 		int soma = 0;
+		int i = 0;
 		while (atual != null || !pilha.isEmpty()) {
 			while (atual != null) {
 				pilha.push(atual);
@@ -206,10 +210,11 @@ public class ArvoreABB {
 			}
 			atual = pilha.pop();
 			soma += atual.getValor();
+			i++;
 			atual = atual.getDir();
 		}
-
-		return soma;
+		int[] array = { soma, i };
+		return array;
 	}
 
 	public boolean ehCheia() {
