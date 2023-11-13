@@ -11,8 +11,7 @@ Implementação de uma Árvore Binária de Busca para a matéria EDBII da UFRN.
 ## Instalação
 
 ### Requisitos
-- JDK 17+
-- Eclipse IDE para Java
+- Eclipse IDE para Java com suporte a JDK 17+ (https://www.eclipse.org/downloads/packages/installer)
 
 ### Compilação
 - Crie um novo projeto Java na IDE Eclipse e insira os arquivos dentro do projeto.
