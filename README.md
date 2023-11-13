@@ -55,7 +55,7 @@ MEDIANA
 ```
 
 ## Limitações
-- O projeto não consegue identificar se um valor já está presente na árvore ao inserir, ou que um valor não está presente ao remover. De qualquer forma, ao realizar essas operações "redundantas", o estado da árvore se mantém inalterado e o programa prossegue executando.
+- O projeto não consegue identificar se um valor já está presente na árvore ao inserir, ou que um valor não está presente ao remover. De qualquer forma, ao realizar essas operações "redundantes", o estado da árvore se mantém inalterado e o programa prossegue executando.
 
 ## Autores
 - Fabrício Moura Jácome
