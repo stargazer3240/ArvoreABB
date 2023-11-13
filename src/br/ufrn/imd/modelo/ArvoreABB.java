@@ -170,7 +170,7 @@ public class ArvoreABB {
 
 	public double media(int x) {
 		Nodo atual = nodoPosicao(x);
-		return somaNodos(atual) / 2;
+		return somaNodos(atual) / tamanho;
 	}
 
 	// Retorna o nodo na posição x.
