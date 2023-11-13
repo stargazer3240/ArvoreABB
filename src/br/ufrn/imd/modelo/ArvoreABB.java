@@ -170,10 +170,15 @@ public class ArvoreABB {
 
 	public double media(int x) {
 		Nodo atual = nodoPosicao(x);
-		int[] array = percorrerSubArvore(atual);
-		double soma = array[0];
-		double qtd = array[1];
-		return soma / qtd;
+		if (atual != null) {
+			int[] array = percorrerSubArvore(atual);
+			double soma = array[0];
+			double qtd = array[1];
+			return soma / qtd;
+		} else {
+			System.out.println("Esse valor não está presente na árvore");
+			return 0;
+		}
 	}
 
 	// Retorna o nodo na posição x.
